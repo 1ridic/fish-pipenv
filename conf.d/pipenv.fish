@@ -26,7 +26,11 @@ function __pipenv_shell_activate --on-variable PWD
 
         set -e __pipenv_fish_initial_pwd
         if test -n "$__pipenv_fish_final_pwd"
-            cd "$__pipenv_fish_final_pwd"
+            if command -q zoxide
+                z "$__pipenv_fish_final_pwd"
+            else
+                cd "$__pipenv_fish_final_pwd"
+            end
             set -e __pipenv_fish_final_pwd
         end
         end
